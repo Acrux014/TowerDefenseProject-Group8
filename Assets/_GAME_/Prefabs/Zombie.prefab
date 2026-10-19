@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   path: {fileID: 0}
-  speed: 2
+  speed: 8
   canMove: 1
   rb: {fileID: 6527136173486580544}
 --- !u!70 &2250043115475041292

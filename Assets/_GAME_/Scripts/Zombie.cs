@@ -54,7 +54,7 @@ public class Zombie : MonoBehaviour
         if (!initialized || !canMove || waypointIndex >= path.waypoints.Length)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             return;
         }
 
