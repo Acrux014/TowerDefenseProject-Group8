@@ -6,15 +6,10 @@ public class ZombieSpawner : MonoBehaviour
 {
     public GameObject zombiePrefab;
     public PathController path;
-    
-    public float spawnInterval = 1f;    
+
+    public float spawnInterval = 1f;
 
     private bool isSpawning;
-
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
@@ -24,8 +19,7 @@ public class ZombieSpawner : MonoBehaviour
     public void SpawnWave()
     {
         if (isSpawning || zombiePrefab == null || path == null || path.waypoints == null || path.waypoints.Length < 2) return;
-
-        if (!zombiePrefab.TryGetComponent<Zombie>(out _)) return;       
+        if (!zombiePrefab.TryGetComponent<Zombie>(out _)) return;
 
         StartCoroutine(Spawn());
     }
@@ -35,10 +29,9 @@ public class ZombieSpawner : MonoBehaviour
         isSpawning = true;
 
         GameObject zombie = Instantiate(zombiePrefab, path.waypoints[0].position, Quaternion.identity);
-        
         zombie.GetComponent<Zombie>().Initialize(path);
 
-        yield return new WaitForSeconds(Mathf.Max(0f, spawnInterval));        
+        yield return new WaitForSeconds(Mathf.Max(0.01f, spawnInterval));
 
         isSpawning = false;
     }

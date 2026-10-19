@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -10,13 +11,13 @@ public class PathController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
-        
+
     }
 
     private void OnDrawGizmos()
@@ -35,7 +36,7 @@ public class PathController : MonoBehaviour
 
         float halfWidth = Mathf.Max(0f, offset) / 2f;
 
-       
+
         Gizmos.color = Color.green;
 
         for (int i = 0; i < waypoints.Length; i++)
@@ -48,7 +49,7 @@ public class PathController : MonoBehaviour
                     waypoints[i + 1].position);
         }
 
-        
+
         Gizmos.color = Color.cyan;
 
         for (int i = 0; i < waypoints.Length - 1; i++)
@@ -89,14 +90,14 @@ public class PathController : MonoBehaviour
     {
         Vector3 direction = waypoints[index + 1].position - waypoints[index].position;
 
-        direction.y = 0f;
+        direction.z = 0f;
         return direction.normalized;
     }
 
     private Vector3 GetSide(int index)
     {
         Vector3 direction = GetDirection(index);
-        return new Vector3(-direction.z, 0f, direction.x);
+        return new Vector3(-direction.y, direction.x, 0f);
     }
 
 
