@@ -234,9 +234,9 @@ MonoBehaviour:
   zombieLayers:
     serializedVersion: 2
     m_Bits: 64
-  range: 30
-  fireRate: 1
-  turnSpeed: 180
+  range: 25
+  fireRate: 3
+  turnSpeed: 100
 --- !u!1 &6989353508070609941
 GameObject:
   m_ObjectHideFlags: 0
