@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    public GameObject zombiePrefab;
-    public PathController path;
+    [SerializeField] public GameObject zombiePrefab;
+    [SerializeField] public PathController path;
 
-    public float spawnInterval = 1f;
+    [SerializeField] public float spawnInterval = 1f;
+    [SerializeField] public int numberOfSpawners = 1;
 
     private bool isSpawning;
 
@@ -20,8 +21,11 @@ public class ZombieSpawner : MonoBehaviour
     {
         if (isSpawning || zombiePrefab == null || path == null || path.waypoints == null || path.waypoints.Length < 2) return;
         if (!zombiePrefab.TryGetComponent<Zombie>(out _)) return;
-
-        StartCoroutine(Spawn());
+        for(int i = 0; i < numberOfSpawners; i++)
+        {
+            StartCoroutine(Spawn());
+        }
+        
     }
 
     private IEnumerator Spawn()
