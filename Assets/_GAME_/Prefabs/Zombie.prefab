@@ -139,11 +139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   path: {fileID: 0}
-  speed: 3.5
+  speed: 3.8
   canMove: 1
   rb: {fileID: 6527136173486580544}
   health: 100
   radius: 0.1
+  zombieDeathEffectPrefab: {fileID: 601122631368923094, guid: 6e21c9a8109d1bf439b088db19b2a9a9, type: 3}
   zombieSpriteRenderer: {fileID: 2561912207622044245}
   bottomLeftColor: {r: 0.45911938, g: 0.45911938, b: 0.45911938, a: 1}
   bottomRightColor: {r: 0.26998526, g: 0.45911938, b: 0.2699853, a: 1}

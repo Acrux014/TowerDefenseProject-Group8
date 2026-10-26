@@ -229,14 +229,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
   turret: {fileID: 4989322300335477234}
-  firePoint: {fileID: 3751740779166698420}
+  firePoints:
+  - {fileID: 3751740779166698420}
   projectilePrefab: {fileID: 2133537744475193835, guid: 32f5d9187072c1d49b87703b8126b3fa, type: 3}
   zombieLayers:
     serializedVersion: 2
     m_Bits: 64
-  range: 25
-  fireRate: 3
-  turnSpeed: 100
+  range: 28
+  fireRate: 5.5
+  turnSpeed: 120
 --- !u!1 &6989353508070609941
 GameObject:
   m_ObjectHideFlags: 0

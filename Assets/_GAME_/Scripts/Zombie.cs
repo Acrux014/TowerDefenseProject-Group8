@@ -18,6 +18,8 @@ public class Zombie : MonoBehaviour
     private bool initialized;
     private Vector2 nextPosition;
 
+    [SerializeField] private GameObject zombieDeathEffectPrefab;
+
     [SerializeField] private SpriteRenderer zombieSpriteRenderer;
     [SerializeField] private Color bottomLeftColor = Color.green;
     [SerializeField] private Color bottomRightColor = Color.green;
@@ -85,8 +87,9 @@ public class Zombie : MonoBehaviour
             zombies.Add(this);
             return;
         }
-
+        
         Destroy(gameObject);
+        
     }
 
     public void TakeDamage(float damage)
@@ -95,7 +98,12 @@ public class Zombie : MonoBehaviour
 
         health -= damage;
 
-        if (health <= 0f) Destroy(gameObject);
+        if (health <= 0f)
+        {
+            var deathEffect = Instantiate(zombieDeathEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(deathEffect, 1f);
+            Destroy(gameObject);
+        }
     }
 
     private bool IsBlocked(Vector2 position)

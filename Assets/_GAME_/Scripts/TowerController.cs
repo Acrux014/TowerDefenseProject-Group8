@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerController : MonoBehaviour
 {
     public Transform turret;
-    public Transform firePoint;
+    public Transform[] firePoints;
     public Projectile projectilePrefab;
     public LayerMask zombieLayers;
 
@@ -16,7 +16,7 @@ public class TowerController : MonoBehaviour
 
     private void Update()
     {
-        if (turret == null || firePoint == null || projectilePrefab == null || fireRate <= 0f) return;
+        if (turret == null || firePoints.Length == 0 || projectilePrefab == null || fireRate <= 0f) return;
 
         Zombie target = FindTarget();
         if (target == null) return;
@@ -25,14 +25,27 @@ public class TowerController : MonoBehaviour
         if (direction.sqrMagnitude < 0.0001f) return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(0f, 0f, angle - 95f);
+        var rand = Random.Range(-3.75f, 3.75f);
+        Quaternion rotation = Quaternion.Euler(0f, 0f, angle - 90f + rand);
 
         turret.rotation = Quaternion.RotateTowards(turret.rotation, rotation, turnSpeed * Time.deltaTime);
 
-        if (Quaternion.Angle(turret.rotation, rotation) > 5f || Time.time < nextShot) return;
+        Projectile projectile1 = null, projectile2 = null;
 
-        Projectile projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        projectile.Fire(firePoint.up);
+        if (Quaternion.Angle(turret.rotation, rotation) > 5f || Time.time < nextShot) return;
+        if(firePoints.Length >= 1)
+        {
+            projectile1 = Instantiate(projectilePrefab, firePoints[0].position, firePoints[0].rotation);
+            projectile1.Fire(firePoints[0].up);
+        }
+
+        if(firePoints.Length >= 2)
+        {
+            projectile2 = Instantiate(projectilePrefab, firePoints[1].position, firePoints[1].rotation);
+            projectile2.Fire(firePoints[1].up);
+        }      
+
+        
 
         nextShot = Time.time + 1f / fireRate;
     }
